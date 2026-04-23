@@ -1,0 +1,12 @@
+# Start POX Controller
+python3 pox.py forwarding.l2_learning
+
+# Start Mininet Topology
+sudo mn --topo single,2 --controller remote
+
+# Scenario 1: Normal Traffic
+pingall
+
+# Scenario 2: High Utilization
+h2 iperf -s &
+h1 iperf -c 10.0.0.2
