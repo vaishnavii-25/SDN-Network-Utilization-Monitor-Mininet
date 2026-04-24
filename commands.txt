@@ -4,9 +4,17 @@ python3 pox.py forwarding.l2_learning
 # Start Mininet Topology
 sudo mn --topo single,2 --controller remote
 
-# Scenario 1: Normal Traffic
+# Scenario 1: Connectivity / Packet Loss
 pingall
 
-# Scenario 2: High Utilization
+# Scenario 2: Latency Monitoring
+h1 ping -c 5 h2
+
+# Scenario 3: High Utilization / Throughput
 h2 iperf -s &
 h1 iperf -c 10.0.0.2
+
+# Optional Failure Scenario
+link h1 s1 down
+pingall
+link h1 s1 up
